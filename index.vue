@@ -1,4 +1,5 @@
-  <Modal v-model="synChroniz" title="同步选项" @on-ok="ok" @on-cancel="cancel" width="500" height="500">
+<template>
+<Modal v-model="synChroniz" title="同步选项" @on-ok="ok" @on-cancel="cancel" width="500" height="500">
         <Input v-model="value3" size="small" placeholder="small size" disabled />
         <RadioGroup v-model="vertical" vertical>
           <Radio label="初始化">
@@ -17,7 +18,9 @@
             v-if="vertical === '选择一个时间'"></DatePicker>
         </RadioGroup>
       </Modal>
-      
+      <template/>
+     <script>
+     methods:{
       ok() {
       this.$Message.info(this.vertical + "成功");
       if (this.vertical === '初始化') {
@@ -52,4 +55,6 @@
     },
     cancel() {
       this.$Message.info("关闭");
-    },
+    }
+    }
+    <script/>
