@@ -428,3 +428,18 @@ export const getDateStr = (timestamp, type = "date") => {
         return time.getFullYear() + '-' + (month < 10 ? '0' + month : month) + '-' + (date < 10 ? '0' + date : date) + ' ' + (hour < 10 ? `0${hour}` : hour) + ':' + (min < 10 ? `0${min}` : min) + ':' + (sec < 10 ? `0${sec}` : sec);
     }
 }
+// 代码优化
+let synchronizeTime;
+//初始化
+if (this.vertical === '初始化') {
+    synchronizeTime = '1970-01-01';
+    //昨天 
+} else if (this.vertical === '昨天') {
+    const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000);
+    synchronizeTime = `${yesterday.getFullYear()}-${(yesterday.getMonth() + 1).toString().padStart(2, '0')}-${yesterday.getDate().toString().padStart(2, '0')}`;
+    console.log(synchronizeTime);
+    //时间选择
+} else if (this.vertical === '选择一个时间') {
+    const selectTime = this.dateValue;
+    synchronizeTime = `${selectTime.getFullYear()}-${(selectTime.getMonth() + 1).toString().padStart(2, '0')}-${selectTime.getDate().toString().padStart(2, '0')}`;
+}
